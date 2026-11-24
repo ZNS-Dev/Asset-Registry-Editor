@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Asset Registry Editor</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputType>WinExe</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <TargetFramework>net481</TargetFramework>
+    <PlatformTarget>x86</PlatformTarget>
+    <Platforms>x86</Platforms>
+    <Configurations>Debug;Release</Configurations>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>10.0</LangVersion>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ApplicationIcon>Properties\app.ico</ApplicationIcon>
+    <AppConfig>Properties\App.config</AppConfig>
+    <RootNamespace />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Remove="Properties\app.manifest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Properties\app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Forms\AREditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\AREditor.Designer.cs">
+      <DependentUpon>AREditor.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Forms\AREditor.resx">
+      <DependentUpon>AREditor.cs</DependentUpon>
+      <LogicalName>Asset_Registry_Editor.AREditor.resources</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="Properties\app.ico">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+</Project>

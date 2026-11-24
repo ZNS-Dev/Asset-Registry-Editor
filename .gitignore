@@ -1,0 +1,6 @@
+bin/
+obj/
+.vs/
+.idea/
+Asset-Registry-Editor.csproj.user
+Asset-Registry-Editor.slnx
