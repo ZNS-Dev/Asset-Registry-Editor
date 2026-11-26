@@ -38,7 +38,11 @@ public partial class AREditor : Form
         RefreshAssetList();
     }
 
-    private void AREditor_Load(object sender, EventArgs e) => Fonctions.RegisterFileAssociation(".bin", "Asset Registry Editor", "Unreal Engine Asset Registry file");
+    private async void AREditor_Load(object sender, EventArgs e)
+    {
+        Fonctions.RegisterFileAssociation(".bin", "Asset Registry Editor", "Unreal Engine Asset Registry file");
+        await CheckForUpdatesAsync();
+    }
 
     public AREditor(string filePath)
     {

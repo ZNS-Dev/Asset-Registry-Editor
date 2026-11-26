@@ -346,7 +346,7 @@ private void InitializeComponent()
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 9;
-            this.label1.Text = "1.1.0";
+            this.label1.Text = "1.1.1";
             // 
             // AREditor
             // 
