@@ -4,7 +4,7 @@
 > **Asset Registry Editor** is an application that allows you to inject or modify the Asset Registry of an Unreal Engine.
 
 <p align="center">
-<img width="786" height="672" alt="image" src="https://github.com/user-attachments/assets/00d84108-d079-47fa-85b7-9de8ec3938e0" />
+<img width="786" height="672" alt="Capture d’écran 2026-11-26 222428" src="https://github.com/user-attachments/assets/ea20333f-547e-415f-91bc-d351ff27fd1a" />
 
 ## Features & Improvements
 - Automatic Update
@@ -31,5 +31,5 @@
 
 ## Credits
 - FLIPPY for the original tool.
-- James Newton-King : [Newtonsoft.Json](https://www.newtonsoft.com/json)
+- James Newton-King: [Newtonsoft.Json](https://www.newtonsoft.com/json)
 
