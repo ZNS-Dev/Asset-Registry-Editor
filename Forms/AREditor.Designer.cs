@@ -28,6 +28,13 @@ private void InitializeComponent()
 	{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AREditor));
             this.RTBassetregistryparsedread = new System.Windows.Forms.RichTextBox();
+            this.LBLassets = new System.Windows.Forms.Label();
+            this.CLBassets = new System.Windows.Forms.CheckedListBox();
+            this.LBLselectedcount = new System.Windows.Forms.Label();
+            this.TBassetfilter = new System.Windows.Forms.TextBox();
+            this.BTNselectallassets = new System.Windows.Forms.Button();
+            this.BTNclearassetselection = new System.Windows.Forms.Button();
+            this.BTNextractselected = new System.Windows.Forms.Button();
             this.TBsearch = new System.Windows.Forms.TextBox();
             this.BTNsearch = new System.Windows.Forms.Button();
             this.LBLprofiles = new System.Windows.Forms.Label();
@@ -42,11 +49,6 @@ private void InitializeComponent()
             this.BTNselectarpath3 = new System.Windows.Forms.Button();
             this.LBLeditor = new System.Windows.Forms.Label();
             this.LBLdumper = new System.Windows.Forms.Label();
-            this.BTNdirtoexctractallpath = new System.Windows.Forms.Button();
-            this.TBdirtoexctractallpath = new System.Windows.Forms.TextBox();
-            this.BTNextract = new System.Windows.Forms.Button();
-            this.BTNselectarpath2 = new System.Windows.Forms.Button();
-            this.TBarpath2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -55,11 +57,108 @@ private void InitializeComponent()
             this.RTBassetregistryparsedread.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.RTBassetregistryparsedread.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RTBassetregistryparsedread.ForeColor = System.Drawing.Color.White;
-            this.RTBassetregistryparsedread.Location = new System.Drawing.Point(376, 92);
+            this.RTBassetregistryparsedread.HideSelection = false;
+            this.RTBassetregistryparsedread.Location = new System.Drawing.Point(277, 145);
             this.RTBassetregistryparsedread.Name = "RTBassetregistryparsedread";
-            this.RTBassetregistryparsedread.Size = new System.Drawing.Size(396, 494);
+            this.RTBassetregistryparsedread.Size = new System.Drawing.Size(495, 441);
             this.RTBassetregistryparsedread.TabIndex = 1;
             this.RTBassetregistryparsedread.Text = "";
+            // 
+            // LBLassets
+            // 
+            this.LBLassets.AutoSize = true;
+            this.LBLassets.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LBLassets.Location = new System.Drawing.Point(13, 32);
+            this.LBLassets.Name = "LBLassets";
+            this.LBLassets.Size = new System.Drawing.Size(45, 16);
+            this.LBLassets.TabIndex = 10;
+            this.LBLassets.Text = "Assets:";
+            // 
+            // CLBassets
+            // 
+            this.CLBassets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.CLBassets.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CLBassets.CheckOnClick = true;
+            this.CLBassets.Enabled = false;
+            this.CLBassets.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold);
+            this.CLBassets.ForeColor = System.Drawing.Color.White;
+            this.CLBassets.FormattingEnabled = true;
+            this.CLBassets.HorizontalScrollbar = true;
+            this.CLBassets.IntegralHeight = false;
+            this.CLBassets.Location = new System.Drawing.Point(12, 121);
+            this.CLBassets.Name = "CLBassets";
+            this.CLBassets.Size = new System.Drawing.Size(259, 465);
+            this.CLBassets.TabIndex = 2;
+            this.CLBassets.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CLBassets_ItemCheck);
+            this.CLBassets.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CLBassets_MouseUp);
+            // 
+            // LBLselectedcount
+            // 
+            this.LBLselectedcount.AutoSize = true;
+            this.LBLselectedcount.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold);
+            this.LBLselectedcount.Location = new System.Drawing.Point(13, 48);
+            this.LBLselectedcount.Name = "LBLselectedcount";
+            this.LBLselectedcount.Size = new System.Drawing.Size(58, 14);
+            this.LBLselectedcount.TabIndex = 11;
+            this.LBLselectedcount.Text = "0 selected";
+            // 
+            // TBassetfilter
+            // 
+            this.TBassetfilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.TBassetfilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBassetfilter.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold);
+            this.TBassetfilter.ForeColor = System.Drawing.Color.White;
+            this.TBassetfilter.Location = new System.Drawing.Point(12, 65);
+            this.TBassetfilter.MaxLength = 128;
+            this.TBassetfilter.Name = "TBassetfilter";
+            this.TBassetfilter.Size = new System.Drawing.Size(121, 21);
+            this.TBassetfilter.TabIndex = 15;
+            this.TBassetfilter.TextChanged += new System.EventHandler(this.TBassetfilter_TextChanged);
+            // 
+            // BTNselectallassets
+            // 
+            this.BTNselectallassets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.BTNselectallassets.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BTNselectallassets.Enabled = false;
+            this.BTNselectallassets.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.BTNselectallassets.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BTNselectallassets.Location = new System.Drawing.Point(139, 65);
+            this.BTNselectallassets.Name = "BTNselectallassets";
+            this.BTNselectallassets.Size = new System.Drawing.Size(70, 22);
+            this.BTNselectallassets.TabIndex = 12;
+            this.BTNselectallassets.Text = "Select all";
+            this.BTNselectallassets.UseVisualStyleBackColor = false;
+            this.BTNselectallassets.Click += new System.EventHandler(this.BTNselectallassets_Click);
+            // 
+            // BTNclearassetselection
+            // 
+            this.BTNclearassetselection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.BTNclearassetselection.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BTNclearassetselection.Enabled = false;
+            this.BTNclearassetselection.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.BTNclearassetselection.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BTNclearassetselection.Location = new System.Drawing.Point(215, 65);
+            this.BTNclearassetselection.Name = "BTNclearassetselection";
+            this.BTNclearassetselection.Size = new System.Drawing.Size(56, 22);
+            this.BTNclearassetselection.TabIndex = 13;
+            this.BTNclearassetselection.Text = "Clear";
+            this.BTNclearassetselection.UseVisualStyleBackColor = false;
+            this.BTNclearassetselection.Click += new System.EventHandler(this.BTNclearassetselection_Click);
+            // 
+            // BTNextractselected
+            // 
+            this.BTNextractselected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.BTNextractselected.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BTNextractselected.Enabled = false;
+            this.BTNextractselected.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.BTNextractselected.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.BTNextractselected.Location = new System.Drawing.Point(12, 592);
+            this.BTNextractselected.Name = "BTNextractselected";
+            this.BTNextractselected.Size = new System.Drawing.Size(259, 24);
+            this.BTNextractselected.TabIndex = 14;
+            this.BTNextractselected.Text = "Extract selected as JSON";
+            this.BTNextractselected.UseVisualStyleBackColor = false;
+            this.BTNextractselected.Click += new System.EventHandler(this.BTNextractselected_Click);
             // 
             // TBsearch
             // 
@@ -67,17 +166,18 @@ private void InitializeComponent()
             this.TBsearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TBsearch.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBsearch.ForeColor = System.Drawing.Color.White;
-            this.TBsearch.Location = new System.Drawing.Point(469, 62);
+            this.TBsearch.Location = new System.Drawing.Point(370, 115);
             this.TBsearch.MaxLength = 64;
             this.TBsearch.Name = "TBsearch";
-            this.TBsearch.Size = new System.Drawing.Size(303, 24);
+            this.TBsearch.Size = new System.Drawing.Size(402, 24);
             this.TBsearch.TabIndex = 0;
+            this.TBsearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBsearch_KeyDown);
             // 
             // BTNsearch
             // 
             this.BTNsearch.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BTNsearch.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTNsearch.Location = new System.Drawing.Point(376, 63);
+            this.BTNsearch.Location = new System.Drawing.Point(277, 116);
             this.BTNsearch.Name = "BTNsearch";
             this.BTNsearch.Size = new System.Drawing.Size(87, 23);
             this.BTNsearch.TabIndex = 0;
@@ -89,7 +189,7 @@ private void InitializeComponent()
             // 
             this.LBLprofiles.AutoSize = true;
             this.LBLprofiles.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LBLprofiles.Location = new System.Drawing.Point(12, 153);
+            this.LBLprofiles.Location = new System.Drawing.Point(273, 9);
             this.LBLprofiles.Name = "LBLprofiles";
             this.LBLprofiles.Size = new System.Drawing.Size(77, 23);
             this.LBLprofiles.TabIndex = 0;
@@ -99,7 +199,7 @@ private void InitializeComponent()
             // 
             this.LBLprofilename.AutoSize = true;
             this.LBLprofilename.Font = new System.Drawing.Font("Microsoft Tai Le", 9.25F, System.Drawing.FontStyle.Bold);
-            this.LBLprofilename.Location = new System.Drawing.Point(13, 188);
+            this.LBLprofilename.Location = new System.Drawing.Point(356, 11);
             this.LBLprofilename.Name = "LBLprofilename";
             this.LBLprofilename.Size = new System.Drawing.Size(47, 16);
             this.LBLprofilename.TabIndex = 1;
@@ -111,10 +211,10 @@ private void InitializeComponent()
             this.TBprofilename.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TBprofilename.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBprofilename.ForeColor = System.Drawing.Color.White;
-            this.TBprofilename.Location = new System.Drawing.Point(66, 185);
-            this.TBprofilename.MaxLength = 24;
+            this.TBprofilename.Location = new System.Drawing.Point(409, 9);
+            this.TBprofilename.MaxLength = 29;
             this.TBprofilename.Name = "TBprofilename";
-            this.TBprofilename.Size = new System.Drawing.Size(173, 21);
+            this.TBprofilename.Size = new System.Drawing.Size(181, 21);
             this.TBprofilename.TabIndex = 2;
             // 
             // BTNcreateprofile
@@ -123,9 +223,9 @@ private void InitializeComponent()
             this.BTNcreateprofile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BTNcreateprofile.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BTNcreateprofile.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.BTNcreateprofile.Location = new System.Drawing.Point(245, 184);
+            this.BTNcreateprofile.Location = new System.Drawing.Point(277, 34);
             this.BTNcreateprofile.Name = "BTNcreateprofile";
-            this.BTNcreateprofile.Size = new System.Drawing.Size(125, 23);
+            this.BTNcreateprofile.Size = new System.Drawing.Size(161, 23);
             this.BTNcreateprofile.TabIndex = 3;
             this.BTNcreateprofile.Text = "Create Profile";
             this.BTNcreateprofile.UseVisualStyleBackColor = false;
@@ -134,13 +234,16 @@ private void InitializeComponent()
             // CBprofiles
             // 
             this.CBprofiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.CBprofiles.DropDownHeight = 55;
             this.CBprofiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBprofiles.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.CBprofiles.ForeColor = System.Drawing.Color.White;
             this.CBprofiles.FormattingEnabled = true;
-            this.CBprofiles.Location = new System.Drawing.Point(13, 213);
+            this.CBprofiles.IntegralHeight = false;
+            this.CBprofiles.ItemHeight = 13;
+            this.CBprofiles.Location = new System.Drawing.Point(598, 10);
             this.CBprofiles.Name = "CBprofiles";
-            this.CBprofiles.Size = new System.Drawing.Size(164, 21);
+            this.CBprofiles.Size = new System.Drawing.Size(176, 21);
             this.CBprofiles.TabIndex = 4;
             this.CBprofiles.SelectedIndexChanged += new System.EventHandler(this.CBprofiles_SelectedIndexChanged);
             // 
@@ -151,9 +254,9 @@ private void InitializeComponent()
             this.BTNopeninjectfolder.Enabled = false;
             this.BTNopeninjectfolder.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BTNopeninjectfolder.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.BTNopeninjectfolder.Location = new System.Drawing.Point(245, 213);
+            this.BTNopeninjectfolder.Location = new System.Drawing.Point(277, 60);
             this.BTNopeninjectfolder.Name = "BTNopeninjectfolder";
-            this.BTNopeninjectfolder.Size = new System.Drawing.Size(125, 23);
+            this.BTNopeninjectfolder.Size = new System.Drawing.Size(161, 24);
             this.BTNopeninjectfolder.TabIndex = 5;
             this.BTNopeninjectfolder.Text = "Open Inject Folder";
             this.BTNopeninjectfolder.UseVisualStyleBackColor = false;
@@ -166,9 +269,9 @@ private void InitializeComponent()
             this.BTNinjectprofile.Enabled = false;
             this.BTNinjectprofile.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BTNinjectprofile.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.BTNinjectprofile.Location = new System.Drawing.Point(183, 213);
+            this.BTNinjectprofile.Location = new System.Drawing.Point(277, 88);
             this.BTNinjectprofile.Name = "BTNinjectprofile";
-            this.BTNinjectprofile.Size = new System.Drawing.Size(56, 23);
+            this.BTNinjectprofile.Size = new System.Drawing.Size(161, 23);
             this.BTNinjectprofile.TabIndex = 6;
             this.BTNinjectprofile.Text = "Inject";
             this.BTNinjectprofile.UseVisualStyleBackColor = false;
@@ -180,9 +283,9 @@ private void InitializeComponent()
             this.BTNsavefiletojson.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BTNsavefiletojson.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BTNsavefiletojson.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.BTNsavefiletojson.Location = new System.Drawing.Point(376, 592);
+            this.BTNsavefiletojson.Location = new System.Drawing.Point(277, 592);
             this.BTNsavefiletojson.Name = "BTNsavefiletojson";
-            this.BTNsavefiletojson.Size = new System.Drawing.Size(190, 23);
+            this.BTNsavefiletojson.Size = new System.Drawing.Size(245, 23);
             this.BTNsavefiletojson.TabIndex = 5;
             this.BTNsavefiletojson.Text = "Save as JSON";
             this.BTNsavefiletojson.UseVisualStyleBackColor = false;
@@ -194,9 +297,9 @@ private void InitializeComponent()
             this.BTNsavefiletobin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BTNsavefiletobin.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BTNsavefiletobin.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.BTNsavefiletobin.Location = new System.Drawing.Point(582, 592);
+            this.BTNsavefiletobin.Location = new System.Drawing.Point(528, 592);
             this.BTNsavefiletobin.Name = "BTNsavefiletobin";
-            this.BTNsavefiletobin.Size = new System.Drawing.Size(190, 23);
+            this.BTNsavefiletobin.Size = new System.Drawing.Size(244, 23);
             this.BTNsavefiletobin.TabIndex = 6;
             this.BTNsavefiletobin.Text = "Save as BIN";
             this.BTNsavefiletobin.UseVisualStyleBackColor = false;
@@ -208,9 +311,9 @@ private void InitializeComponent()
             this.BTNselectarpath3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BTNselectarpath3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BTNselectarpath3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.BTNselectarpath3.Location = new System.Drawing.Point(376, 35);
+            this.BTNselectarpath3.Location = new System.Drawing.Point(12, 93);
             this.BTNselectarpath3.Name = "BTNselectarpath3";
-            this.BTNselectarpath3.Size = new System.Drawing.Size(396, 21);
+            this.BTNselectarpath3.Size = new System.Drawing.Size(259, 22);
             this.BTNselectarpath3.TabIndex = 4;
             this.BTNselectarpath3.Text = "Select an AssetRegistry.bin";
             this.BTNselectarpath3.UseVisualStyleBackColor = false;
@@ -220,7 +323,7 @@ private void InitializeComponent()
             // 
             this.LBLeditor.AutoSize = true;
             this.LBLeditor.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold);
-            this.LBLeditor.Location = new System.Drawing.Point(708, 9);
+            this.LBLeditor.Location = new System.Drawing.Point(708, 89);
             this.LBLeditor.Name = "LBLeditor";
             this.LBLeditor.Size = new System.Drawing.Size(64, 23);
             this.LBLeditor.TabIndex = 8;
@@ -236,70 +339,6 @@ private void InitializeComponent()
             this.LBLdumper.TabIndex = 6;
             this.LBLdumper.Text = "Extractor";
             // 
-            // BTNdirtoexctractallpath
-            // 
-            this.BTNdirtoexctractallpath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.BTNdirtoexctractallpath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BTNdirtoexctractallpath.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BTNdirtoexctractallpath.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.BTNdirtoexctractallpath.Location = new System.Drawing.Point(12, 118);
-            this.BTNdirtoexctractallpath.Name = "BTNdirtoexctractallpath";
-            this.BTNdirtoexctractallpath.Size = new System.Drawing.Size(183, 23);
-            this.BTNdirtoexctractallpath.TabIndex = 7;
-            this.BTNdirtoexctractallpath.Text = "Select output folder";
-            this.BTNdirtoexctractallpath.UseVisualStyleBackColor = false;
-            this.BTNdirtoexctractallpath.Click += new System.EventHandler(this.BTNdirtoexctractallpath_Click);
-            // 
-            // TBdirtoexctractallpath
-            // 
-            this.TBdirtoexctractallpath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.TBdirtoexctractallpath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBdirtoexctractallpath.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBdirtoexctractallpath.ForeColor = System.Drawing.Color.White;
-            this.TBdirtoexctractallpath.Location = new System.Drawing.Point(12, 91);
-            this.TBdirtoexctractallpath.Name = "TBdirtoexctractallpath";
-            this.TBdirtoexctractallpath.Size = new System.Drawing.Size(358, 21);
-            this.TBdirtoexctractallpath.TabIndex = 6;
-            // 
-            // BTNextract
-            // 
-            this.BTNextract.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.BTNextract.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BTNextract.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BTNextract.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.BTNextract.Location = new System.Drawing.Point(201, 118);
-            this.BTNextract.Name = "BTNextract";
-            this.BTNextract.Size = new System.Drawing.Size(169, 23);
-            this.BTNextract.TabIndex = 5;
-            this.BTNextract.Text = "Extract";
-            this.BTNextract.UseVisualStyleBackColor = false;
-            this.BTNextract.Click += new System.EventHandler(this.BTNextract_Click);
-            // 
-            // BTNselectarpath2
-            // 
-            this.BTNselectarpath2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.BTNselectarpath2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BTNselectarpath2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BTNselectarpath2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.BTNselectarpath2.Location = new System.Drawing.Point(12, 62);
-            this.BTNselectarpath2.Name = "BTNselectarpath2";
-            this.BTNselectarpath2.Size = new System.Drawing.Size(182, 23);
-            this.BTNselectarpath2.TabIndex = 3;
-            this.BTNselectarpath2.Text = "Select an AssetRegistry.bin";
-            this.BTNselectarpath2.UseVisualStyleBackColor = false;
-            this.BTNselectarpath2.Click += new System.EventHandler(this.BTNselectarpath2_Click);
-            // 
-            // TBarpath2
-            // 
-            this.TBarpath2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.TBarpath2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TBarpath2.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBarpath2.ForeColor = System.Drawing.Color.White;
-            this.TBarpath2.Location = new System.Drawing.Point(12, 35);
-            this.TBarpath2.Name = "TBarpath2";
-            this.TBarpath2.Size = new System.Drawing.Size(358, 21);
-            this.TBarpath2.TabIndex = 2;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -307,7 +346,7 @@ private void InitializeComponent()
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 9;
-            this.label1.Text = "1.0.0";
+            this.label1.Text = "1.1.0";
             // 
             // AREditor
             // 
@@ -317,24 +356,26 @@ private void InitializeComponent()
             this.ClientSize = new System.Drawing.Size(784, 640);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TBsearch);
+            this.Controls.Add(this.CLBassets);
+            this.Controls.Add(this.LBLselectedcount);
+            this.Controls.Add(this.TBassetfilter);
+            this.Controls.Add(this.BTNselectallassets);
+            this.Controls.Add(this.BTNclearassetselection);
+            this.Controls.Add(this.BTNextractselected);
+            this.Controls.Add(this.LBLassets);
             this.Controls.Add(this.BTNsearch);
             this.Controls.Add(this.BTNinjectprofile);
             this.Controls.Add(this.RTBassetregistryparsedread);
             this.Controls.Add(this.LBLdumper);
             this.Controls.Add(this.BTNopeninjectfolder);
-            this.Controls.Add(this.BTNdirtoexctractallpath);
             this.Controls.Add(this.LBLprofiles);
             this.Controls.Add(this.CBprofiles);
             this.Controls.Add(this.BTNsavefiletojson);
             this.Controls.Add(this.LBLeditor);
-            this.Controls.Add(this.TBarpath2);
             this.Controls.Add(this.BTNcreateprofile);
             this.Controls.Add(this.BTNsavefiletobin);
-            this.Controls.Add(this.TBdirtoexctractallpath);
-            this.Controls.Add(this.BTNselectarpath2);
             this.Controls.Add(this.TBprofilename);
             this.Controls.Add(this.BTNselectarpath3);
-            this.Controls.Add(this.BTNextract);
             this.Controls.Add(this.LBLprofilename);
             this.ForeColor = System.Drawing.Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -358,10 +399,12 @@ private void InitializeComponent()
     private Button BTNselectarpath3;
     private Label LBLeditor;
     private Label LBLdumper;
-    private Button BTNdirtoexctractallpath;
-    private TextBox TBdirtoexctractallpath;
-    private Button BTNextract;
-    private Button BTNselectarpath2;
-    private TextBox TBarpath2;
     private Label label1;
+    private Label LBLassets;
+    private System.Windows.Forms.CheckedListBox CLBassets;
+    private Label LBLselectedcount;
+    private TextBox TBassetfilter;
+    private Button BTNselectallassets;
+    private Button BTNclearassetselection;
+    private Button BTNextractselected;
 }

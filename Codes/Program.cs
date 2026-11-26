@@ -9,15 +9,15 @@ internal static class Program
     [STAThread]
     private static void Main(string[] args)
     {
+        if (!NewtonsoftJsonBootstrapper.EnsureAvailable())
+            return;
+
         Application.EnableVisualStyles();
-        Application.SetCompatibleTextRenderingDefault(defaultValue: false);
+        Application.SetCompatibleTextRenderingDefault(false);
+
         if (args.Length != 0)
-        {
             Application.Run(new AREditor(args[0]));
-        }
         else
-        {
             Application.Run(new AREditor());
-        }
     }
 }

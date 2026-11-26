@@ -52,10 +52,67 @@ namespace AssetRegistry
         private const string SourceAssetRegistryFileName = "AssetRegistry.bin";
         private const string InjectDirectoryName = "Inject";
         private const string CustomAssetRegistryFileName = "AssetRegistry_Custom.bin";
+        private const string LastUsedProfileFileName = "last-profile.txt";
+
+        private static string LastUsedProfilePath
+        {
+            get { return Path.Combine(DataDirectory, LastUsedProfileFileName); }
+        }
 
         public static string DataDirectory
         {
             get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data"); }
+        }
+
+        public static string LoadLastUsedProfileName()
+        {
+            try
+            {
+                if (!File.Exists(LastUsedProfilePath))
+                    return null;
+
+                string profileName = File.ReadAllText(LastUsedProfilePath).Trim();
+                return profileName.Length == 0 ? null : profileName;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static void SaveLastUsedProfile(ProfileInfo profile)
+        {
+            if (profile == null || string.IsNullOrWhiteSpace(profile.Name))
+                return;
+
+            Directory.CreateDirectory(DataDirectory);
+            string temporaryPath = LastUsedProfilePath + ".tmp";
+
+            try
+            {
+                File.WriteAllText(temporaryPath, profile.Name, new System.Text.UTF8Encoding(false));
+
+                if (File.Exists(LastUsedProfilePath))
+                {
+                    string backupPath = LastUsedProfilePath + ".bak";
+                    if (File.Exists(backupPath))
+                        File.Delete(backupPath);
+
+                    File.Replace(temporaryPath, LastUsedProfilePath, backupPath, true);
+
+                    if (File.Exists(backupPath))
+                        File.Delete(backupPath);
+                }
+                else
+                {
+                    File.Move(temporaryPath, LastUsedProfilePath);
+                }
+            }
+            finally
+            {
+                if (File.Exists(temporaryPath))
+                    File.Delete(temporaryPath);
+            }
         }
 
         public static ProfileInfo CreateProfile(string profileName, string originalAssetRegistryPath)
